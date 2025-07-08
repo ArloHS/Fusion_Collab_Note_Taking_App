@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  font-family: 'Montserrat', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background: linear-gradient(135deg, #0443F2 0%, #001756 86.45%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+} */
+
+#root {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.login-container {
+  background-color: #FFFFFF;
+  width: 750px;
+  height: 500px;
+  max-width: 850px;
+  max-height: 680px;
+  margin: 0;
+}
+
+.login-container img {
+  max-height: 150px;
+  width: auto;
+}

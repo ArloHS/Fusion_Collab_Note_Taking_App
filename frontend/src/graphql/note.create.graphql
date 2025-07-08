@@ -1,0 +1,15 @@
+mutation CreateNote($title: String!, $category: String) {
+  createNote(title: $title, category: $category) {
+    id
+    title
+    owner {
+      id
+      username
+    }
+    content
+    lastUpdated
+    collaborators {
+      username
+    }
+  }
+}

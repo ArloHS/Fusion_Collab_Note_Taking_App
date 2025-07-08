@@ -1,0 +1,16 @@
+query GetUserNotes {
+  getUserNotes {
+    id
+    title
+    content
+    owner {
+      id
+      username
+    }
+    content
+    lastUpdated
+    collaborators {
+      username
+    }
+  }
+}

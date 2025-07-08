@@ -1,0 +1,12 @@
+query GetUserCategories {
+  getUserCategories {
+    name
+    notes {
+      id
+      title
+      owner {
+        id
+      }
+    }
+  }
+}

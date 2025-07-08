@@ -1,0 +1,6 @@
+subscription NoteUpdated($noteId: ID!) {
+  noteUpdated(noteId: $noteId) {
+    content
+    title
+  }
+}

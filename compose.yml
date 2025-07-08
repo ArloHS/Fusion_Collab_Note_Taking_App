@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - .:/code
+
+  db:
+    image: postgres:15.4-bullseye
+    restart: always
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+ 

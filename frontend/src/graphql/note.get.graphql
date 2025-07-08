@@ -1,0 +1,6 @@
+query GetNote($noteId: ID!) {
+  getNote(id: $noteId) {
+    content
+    title
+  }
+}

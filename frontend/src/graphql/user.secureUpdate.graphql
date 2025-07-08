@@ -1,0 +1,17 @@
+mutation UpdateUserSecure(
+  $email: String
+  $originalPassword: String!
+  $password: String
+) {
+  updateUserSecure(
+    email: $email
+    originalPassword: $originalPassword
+    password: $password
+  ) {
+    id
+    username
+    email
+    firstName
+    lastName
+  }
+}
