@@ -1,0 +1,57 @@
+// TODO add postgress specfic types https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#postgresql
+// TODO these models need to be refactored
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// these models contain specific postgresql type, leave commented for now, sqlite is the current db type
+model User {
+  id         Int          @id @default(autoincrement())
+  email      String       @unique @db.VarChar(50)
+  username   String       @unique @db.VarChar(50)
+  password   String       @db.VarChar(200)
+  firstName  String       @db.VarChar(50)
+  lastName   String       @db.VarChar(50)
+  imageUrl   String?
+  Note       Note[]
+  NoteAccess NoteAccess[]
+  Category   Category[]
+}
+
+model Note {
+  id            Int          @id @default(autoincrement())
+  content       String       @default("")
+  title         String       @db.VarChar(75)
+  lastUpdated   DateTime
+  created       DateTime
+  owner         User         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId       Int
+  category      Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  collaborators NoteAccess[]
+  categoryId    Int?
+}
+
+model Category {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(50)
+  user   User   @relation(fields: [userId], references: [id])
+  notes  Note[]
+  userId Int
+
+  @@unique([userId, name])
+}
+
+model NoteAccess {
+  id     Int  @id @default(autoincrement())
+  note   Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  noteId Int
+  userId Int
+
+  @@unique([noteId, userId])
+}
